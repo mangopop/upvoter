@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html data-ng-app="myApp">
+<head>
+    <script src="bower_components/angularjs/angular.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="main.css"/>
+    <title>Task Voter</title>
+</head>
+<body>
+
+<h1>Task Voter</h1>
+
+<div data-ng-controller="testCtrl">
+
+    <table class="table">
+        <tr><th>Task</th><th>Votes</th><th>Vote</th><th></th></tr>
+
+        <tr data-ng-repeat="task in tasks">
+            <td>{{task.task}}</td>
+            <td>{{task.votes}}</td>
+            <td>{{task.user_votes}}</td>
+            <td>
+                <button class="btn btn-primary" data-ng-click="voteup($index)">UP</button>
+                <button class="btn btn-primary" data-ng-click="votedown($index)">DOWN</button>
+            </td>
+        </tr>
+
+    </table>
+
+    <button class="btn btn-primary" data-ng-click="test()">test</button>
+
+    <button class="btn btn-primary" id="fetchbtn" data-ng-click="save()">Done</button><br>
+
+    <div>
+        <h3>Votes left</h3>
+        <h2>{{user_votes_left}}</h2>
+    </div>
+
+    <pre>http status code: {{status}}</pre>
+    <pre>http response data: {{data}}</pre>
+
+</div>
+</body>
+</html>
