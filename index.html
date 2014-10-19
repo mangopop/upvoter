@@ -21,6 +21,7 @@
             <td>{{task.task}}</td>
             <td>{{task.votes}}</td>
             <td>{{task.user_votes}}</td>
+            <td hidden>{{task.user_id}}</td>
             <td>
                 <button class="btn btn-primary" data-ng-click="voteup($index)">UP</button>
                 <button class="btn btn-primary" data-ng-click="votedown($index)">DOWN</button>

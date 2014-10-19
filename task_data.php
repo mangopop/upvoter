@@ -57,29 +57,3 @@ echo $helper->arToJson($tasks);
 //    $task->task;
 //    $task->total_votes;
 //}
-
-/*
- * [0] => core\Tasks\Task Object
-        (
-            [errors] =>
-            [attributes:ActiveRecord\Model:private] => Array
-                (
-                    [id] => 1
-                    [task] => Composer
-                    [total_votes] =>
-                    [user_id] =>
-                )
-
-            [__dirty:ActiveRecord\Model:private] => Array
-                (
-                )
-
-            [__readonly:ActiveRecord\Model:private] =>
-            [__relationships:ActiveRecord\Model:private] => Array
-                (
-                )
-
-            [__new_record:ActiveRecord\Model:private] =>
-        )
-
- */
