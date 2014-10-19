@@ -49,15 +49,18 @@ $votes_left = vote_lookup::find('all', array('select' => 'votes'), array('condit
 
     $lookup_data = vote_lookup::find_by_sql('SELECT tasks.task, v.votes, v.user_id, v.id FROM vote_lookups as v LEFT JOIN tasks ON v.task_id = tasks.id');
 
+    //$helper->pre($lookup_data);
+
+    //what if we have a task name twice, the last one will override
     foreach ($final_array as $key => $val1) { //key = 0, val1 = task,empty
 
         foreach ($lookup_data as $val2) { // use - task, votes,user_id, id
-            // add up votes where task name matches
+            // does the task name in final_array match the lookup tables
             if($val1['task'] === $val2->task){
-                if ($val2->user_id === $user_id) {
-                    $final_array[$key]['user_id'] = $val2->user_id; //TODO don't override
+                if ($val2->user_id === $user_id) { //TODO don't override id
+                    $final_array[$key]['user_id'] = $val2->user_id; //TODO don't override user_id
+                    $final_array[$key]['id'] = $val2->id;
                 }
-                $final_array[$key]['id'] = $val2->id;
                 $final_array[$key]['votes'] += $val2->votes; //add votes where user_id matches ... users id
                 if($val2->user_id === 1){
                     $final_array[$key]['user_votes'] = $val2->votes; //get user votes by id

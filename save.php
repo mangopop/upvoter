@@ -19,17 +19,21 @@ $test_data = array(
 
 //want to save to vote_lookup WHERE id
 foreach ($task_data as $row) {
+
     echo "user_votes:".$row->user_votes." ";
     echo "user_id:".$row->user_id." ";
     echo "id:".$row->id." <br>";
-
-    //update record that matches user id AND id
-    //when we save to this record we need to add
-    //the other code will add all the user votes and display
-    $lookup = vote_lookup::find(array('conditions' => "id =". $row->id." AND user_id =".$row->user_id)); // TODO TEST USER_ID
-    // this will overwrite the user votes on this line.
-    $lookup->votes = $row->user_votes;// TODO THIS MUST ADD TO THE VALUE
-    $lookup->save();
+    
+    //because we don't receive all the information from lookup table, we have to skip saving it when it's blank.
+    if(!empty($row->id)){
+        //update record that matches user id AND id
+        //when we save to this record we need to add
+        //the other code will add all the user votes and display
+        $lookup = vote_lookup::find(array('conditions' => "id = ". $row->id." AND user_id = ".$row->user_id)); // TODO TEST USER_ID
+        // this will overwrite the user votes on this line.
+        $lookup->votes = $row->user_votes;// TODO THIS MUST ADD TO THE VALUE
+        $lookup->save();
+    }
 
 //    echo "votes".$row['user_votes'];
 //    echo "id".$row['id'];
